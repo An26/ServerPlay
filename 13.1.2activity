@@ -10,14 +10,22 @@
 
 var http = require('http');
 
-var PORT1 = 7000;
+//1 - 1024 arre preserved ports
+
+var PORT1 = 1025;
 
 var PORT2 = 7500;
+
+var meanStuff = ['you are stinky','you are lame', 'you cannot have whatever you want', 'that is going straight to your hips', 'i do not like you'];
+var niceStuff = ['you smell nice', 'you are awesome', 'you are beautiful!', 'i love your face!', 'OMG you are my hero!'];
+
+
 
 
 var server1 = http.createServer(function(request, response){
 	console.log('something just contacted me!');
-	response.end('hey you have a pretty shirt on');
+	var randomIndex = Math.floor(Math.random() * niceStuff.length);
+	response.end(niceStuff[randomIndex]);
 });
 
 server1.listen(PORT1, function() {
@@ -28,14 +36,13 @@ server1.listen(PORT1, function() {
 //------------------
 
 var server2 = http.createServer(function(request, response){
-	console.log('got contacted');
-	response.end("You have an ugly shirt on");
-	connection.end();
+	console.log('something just contacted me!');
+	var randomIndex = Math.floor(Math.random() * meanStuff.length);
+	response.end(meanStuff[randomIndex]);
 });
 
 
 server2.listen(PORT2, function(){
-	console.log('im listiening on : ' + PORT2)
-	connection.end();
+	console.log('im listiening on : ' + PORT2);
 });
 
